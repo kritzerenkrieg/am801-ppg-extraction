@@ -1,0 +1,13 @@
+Not quite. What is documented and confirmed is:
+
+The frame wrapper: FF FE, length, checksum, device ID 0x23, command, payload.
+The checksum rule.
+0x85 raw packets: the 3-byte Red, IR, and BCK values are decoded exactly as documented.
+0x96 PPG packets: the payload is split into 10 two-byte structures as documented.
+What is still only partial or unverified:
+
+0x95 measurement packets: the code decodes the fields in a plausible way, but the document’s bit layout is not explicit enough to call that fully confirmed.
+0x97 HRV packets: the code assumes 10 big-endian 16-bit intervals, which matches the document’s description, but I have not seen a live packet yet.
+0x99 battery, 0x1D UID, and 0xB0 control: the packet construction/handling matches the document, but they are not live-verified in the capture I ran.
+The baud rate: the device clearly behaved at 230400, not the documented 9600.
+So the correct summary is: the transport and the packets you actually observed are decoded according to the doc, but not every command type has been live-confirmed, and 0x95 is the least certain interpretation. If you want, I can tighten the script so it only claims “documented and verified” for 0x85 and 0x96, and mark the other decoders as provisional.
