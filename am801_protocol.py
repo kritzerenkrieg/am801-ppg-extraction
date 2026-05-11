@@ -17,6 +17,8 @@ CMD_RAW = 0x85
 CMD_UID = 0x1D
 CMD_CONTROL = 0xB0
 
+VERIFIED_COMMANDS = {CMD_RAW, CMD_PPG}
+
 
 def u16_be(data: bytes) -> int:
     return (data[0] << 8) | data[1]
@@ -118,6 +120,10 @@ def decode_uid(payload: bytes) -> str:
     return f"uid(data={payload.hex(' ')})"
 
 
+def command_provenance(command: int) -> str:
+    return "verified" if command in VERIFIED_COMMANDS else "provisional"
+
+
 def decode_packet(packet: Packet) -> str:
     if packet.command == CMD_MEASUREMENT:
         return decode_measurement(packet.payload)
@@ -179,7 +185,7 @@ def format_packet(packet: Packet) -> str:
     status = "ok" if packet.valid_checksum else "bad-checksum"
     decoded = decode_packet(packet)
     return (
-        f"[{status}] len={packet.length} dev=0x{packet.device_id:02X} "
+        f"[{status}|{command_provenance(packet.command)}] len={packet.length} dev=0x{packet.device_id:02X} "
         f"cmd=0x{packet.command:02X} cs=0x{packet.checksum:02X} {decoded}"
     )
 
