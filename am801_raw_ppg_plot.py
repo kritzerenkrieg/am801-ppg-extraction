@@ -4,6 +4,7 @@ import threading
 import time
 from collections import deque
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -13,7 +14,8 @@ import am801_protocol as proto
 
 @dataclass
 class RawSample:
-    wall_time: float
+    host_timestamp_ns: int
+    host_timestamp_iso: str
     elapsed: float
     red: int
     infrared: int
@@ -27,10 +29,12 @@ def extract_raw_sample(packet: proto.Packet, start_wall_time: float) -> RawSampl
     red = proto.u24_be(packet.payload[0:3])
     infrared = proto.u24_be(packet.payload[3:6])
     background = proto.u24_be(packet.payload[6:9])
-    wall_time = time.time()
-    elapsed = wall_time - start_wall_time
+    host_timestamp_ns = time.time_ns()
+    host_timestamp_iso = datetime.now().astimezone().isoformat(timespec="milliseconds")
+    elapsed = (host_timestamp_ns / 1_000_000_000) - start_wall_time
     return RawSample(
-        wall_time=wall_time,
+        host_timestamp_ns=host_timestamp_ns,
+        host_timestamp_iso=host_timestamp_iso,
         elapsed=elapsed,
         red=red,
         infrared=infrared,
@@ -64,8 +68,8 @@ def capture_raw_samples(
             if csv_writer is not None:
                 csv_writer.writerow(
                     {
-                        "wall_time": time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(sample.wall_time))
-                        + f".{int((sample.wall_time % 1) * 1000):03d}",
+                        "host_timestamp_ns": sample.host_timestamp_ns,
+                        "host_timestamp_iso": sample.host_timestamp_iso,
                         "elapsed_s": f"{sample.elapsed:.3f}",
                         "red": sample.red,
                         "infrared": sample.infrared,
@@ -132,7 +136,7 @@ def main() -> int:
             csv_file = args.csv.open("w", newline="", encoding="utf-8")
             csv_writer = csv.DictWriter(
                 csv_file,
-                fieldnames=["wall_time", "elapsed_s", "red", "infrared", "background"],
+                fieldnames=["host_timestamp_ns", "host_timestamp_iso", "elapsed_s", "red", "infrared", "background"],
             )
             csv_writer.writeheader()
 
@@ -185,6 +189,7 @@ def main() -> int:
                 figure.canvas.draw_idle()
                 plt.pause(0.05)
         except KeyboardInterrupt:
+            stop_event.set()
             print("Stopped.")
         finally:
             stop_event.set()
