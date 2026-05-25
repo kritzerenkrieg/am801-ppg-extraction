@@ -8,6 +8,8 @@ import serial
 
 HEADER = b"\xFF\xFE"
 DEVICE_ID = 0x23
+MIN_PACKET_LENGTH = 4
+MAX_PACKET_LENGTH = 64
 
 CMD_MEASUREMENT = 0x95
 CMD_PPG = 0x96
@@ -155,6 +157,11 @@ def parse_packets(buffer: bytearray) -> Iterator[Packet]:
             return
 
         length = buffer[2]
+        if length < MIN_PACKET_LENGTH or length > MAX_PACKET_LENGTH:
+            # Length byte is invalid; drop one byte and re-scan to recover from stream desync.
+            del buffer[0]
+            continue
+
         frame_size = length + 2
         if len(buffer) < frame_size:
             return
