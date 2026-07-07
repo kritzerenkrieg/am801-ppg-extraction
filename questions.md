@@ -103,6 +103,5 @@ Setiap sesi wawancara menjadi satu segmen berlabel.
 
 - Istirahat awal (Baseline): 2 menit
 - Concealed Information Test (CIT): 5 menit
-- Observasi video: 1 menit
 - Relevant Question Test (RQT): 2,5 menit
 - Constructed Narrative (CN): 2,5 menit

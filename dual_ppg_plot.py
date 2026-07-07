@@ -15,6 +15,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 from bleak import BleakClient, BleakScanner
 from serial.tools import list_ports
@@ -386,7 +388,11 @@ def detect_ch341_port() -> str:
         description = (port.description or "").lower()
         manufacturer = (port.manufacturer or "").lower()
         hwid = (port.hwid or "").lower()
+        # Windows-style string match
         if "usb-serial ch341" in description or "wch" in manufacturer or "ch341" in hwid:
+            return port.device
+        # Linux-style match: CH340/CH341 uses WCH's vendor ID 1A86
+        if getattr(port, "vid", None) == 0x1A86:
             return port.device
     detected = [f"{port.device} ({port.description})" for port in list_ports.comports()]
     detected_text = ", ".join(detected) if detected else "none"
@@ -394,7 +400,6 @@ def detect_ch341_port() -> str:
         "Could not auto-detect a USB-SERIAL CH341 port. "
         f"Use --am801-port explicitly. Detected ports: {detected_text}"
     )
-
 
 # ─────────────────────────────────────────────────────────────────────
 #  Main dual-device application
