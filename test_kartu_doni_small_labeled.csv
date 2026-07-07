@@ -1,0 +1,5 @@
+host_timestamp_ns,host_timestamp_iso_am,elapsed_s,red,infrared,ambient,label
+1,2026-07-06T17:49:49.000+07:00,0.0,100,50,0,truth
+2,2026-07-06T17:49:55.000+07:00,6.0,110,52,0,deceptive
+3,2026-07-06T17:50:01.000+07:00,12.0,120,53,0,truth
+4,2026-07-06T17:50:07.000+07:00,18.0,130,54,0,deceptive
