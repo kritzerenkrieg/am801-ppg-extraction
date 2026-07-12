@@ -92,6 +92,15 @@ BATCH_SIZE: int = 64
 LEARNING_RATE: float = 0.001
 OUTPUT_DIR: str = "."
 
+# --------------------------------------------------------------------------
+# Class-mode configuration
+# --------------------------------------------------------------------------
+# "3class": keep all labels as-is (e.g. baseline / truth / deception).
+# "2class": drop windows whose label matches BASELINE_LABEL_KEYWORD (case
+#           insensitive substring match) and train truth vs. deception only.
+CLASS_MODE: str = "2class"  # "3class" or "2class"
+BASELINE_LABEL_KEYWORD: str = "base"
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -297,6 +306,45 @@ def create_windows(
     y = np.array(all_y)
     subjects = np.array(all_subjects)
     return X, y, subjects, window_samples
+
+
+# --------------------------------------------------------------------------
+# Class-mode filtering
+# --------------------------------------------------------------------------
+def filter_classes_for_mode(
+    X: np.ndarray,
+    y_raw: np.ndarray,
+    subjects: np.ndarray,
+    class_mode: str = CLASS_MODE,
+    baseline_keyword: str = BASELINE_LABEL_KEYWORD,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Filter windows according to ``class_mode``.
+
+    - ``"3class"``: no filtering; all labels (e.g. baseline / truth /
+      deception) are kept as-is.
+    - ``"2class"``: windows whose label matches ``baseline_keyword``
+      (case-insensitive substring match) are excluded, leaving only the
+      truth vs. deception classes for training.
+    """
+    if class_mode == "3class":
+        logger.info("Class mode: 3class (baseline / truth / deception kept as-is)")
+        return X, y_raw, subjects
+
+    if class_mode == "2class":
+        mask = np.array([baseline_keyword.lower() not in str(lbl).lower() for lbl in y_raw])
+        removed = int((~mask).sum())
+        logger.info(
+            f"Class mode: 2class (excluding {removed} baseline windows; "
+            f"training truth vs. deception only)"
+        )
+        if mask.sum() == 0:
+            raise RuntimeError(
+                "2-class mode removed all windows: no non-baseline labels found. "
+                "Check BASELINE_LABEL_KEYWORD against your CSV label values."
+            )
+        return X[mask], y_raw[mask], subjects[mask]
+
+    raise ValueError(f"Unknown CLASS_MODE '{class_mode}'; expected '2class' or '3class'")
 
 
 # --------------------------------------------------------------------------
@@ -736,10 +784,13 @@ def main() -> None:
     logger.info(f"Number of subjects: {len(subjects_list)} -> {subjects_list}")
 
     X, y_raw, subjects, window_samples = create_windows(recordings)
-    logger.info(f"Number of windows: {X.shape[0]}")
+    logger.info(f"Number of windows (before class-mode filtering): {X.shape[0]}")
     logger.info(f"Window size (samples): {window_samples} (~{WINDOW_SECONDS}s)")
     median_fs = float(np.median([r.fs for r in recordings]))
     logger.info(f"Sampling frequency (median across recordings): {median_fs:.2f} Hz")
+
+    X, y_raw, subjects = filter_classes_for_mode(X, y_raw, subjects, CLASS_MODE, BASELINE_LABEL_KEYWORD)
+    logger.info(f"Number of windows (after class-mode filtering): {X.shape[0]}")
 
     encoder = LabelEncoder()
     y_enc = encoder.fit_transform(y_raw)
