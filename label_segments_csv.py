@@ -129,9 +129,10 @@ def main() -> int:
     )
     parser.add_argument(
         "--segment-seconds",
+        "-s",
         type=float,
-        default=30.0,
-        help="Segment length in seconds (default: 30)",
+        default=15.0,
+        help="Segment length in seconds (default: 15)",
     )
     parser.add_argument(
         "--elapsed-field",
