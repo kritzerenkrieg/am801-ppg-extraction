@@ -108,6 +108,22 @@ def main() -> int:
         ax2.grid(True, alpha=0.3)
         ax2.set_xlabel("Time (s)")
 
+    # Add 30-second interval vertical lines
+    time_min = x.min()
+    time_max = x.max()
+    
+    # Generate tick positions at 30-second intervals
+    interval = 30  # seconds
+    first_tick = np.ceil(time_min / interval) * interval
+    tick_positions = np.arange(first_tick, time_max + interval, interval)
+    
+    # Add vertical lines to both subplots
+    for tick_pos in tick_positions:
+        if tick_pos <= time_max:
+            ax1.axvline(x=tick_pos, color='red', linestyle='--', linewidth=1.0, alpha=0.7)
+            if has_verity and ax2 is not None:
+                ax2.axvline(x=tick_pos, color='red', linestyle='--', linewidth=1.0, alpha=0.7)
+    
     # Format x-axis
     ax1.set_xlabel("Time (s)")
 
