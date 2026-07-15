@@ -376,6 +376,34 @@ def extract_channel_features(
         return empty
 
 
+def derive_window_label(
+    df: pd.DataFrame,
+    window_start_ns: int,
+    window_end_ns: int,
+    fallback_label: str = "",
+) -> str:
+    """Infer a label for a window from the labels of rows inside it.
+
+    If the window contains multiple labels, the most frequent one is used.
+    If there are no usable labels in the window, the file-level fallback is
+    returned.
+    """
+    timestamps_ns = df["host_timestamp_ns"].to_numpy()
+    mask = (timestamps_ns >= window_start_ns) & (timestamps_ns < window_end_ns)
+    labels = df.loc[mask, "label"].dropna()
+
+    if labels.empty:
+        return fallback_label
+
+    normalized = labels.astype(str).str.strip()
+    normalized = normalized[normalized != ""]
+    if normalized.empty:
+        return fallback_label
+
+    counts = normalized.value_counts()
+    return str(counts.idxmax())
+
+
 def process_window(
     df: pd.DataFrame,
     fs: float,
@@ -394,7 +422,8 @@ def process_window(
     window_start_ns, window_end_ns : int
         Window bounds in nanoseconds.
     label : str
-        Label value inherited from the source file.
+        Fallback label inherited from the source file when the window has no
+        usable labels.
 
     Returns
     -------
@@ -416,7 +445,9 @@ def process_window(
         for feat_name, value in feats.items():
             row[f"{channel}_{feat_name}"] = value
 
-    row["label"] = label
+    row["label"] = derive_window_label(
+        df, window_start_ns, window_end_ns, fallback_label=label
+    )
     return row
 
 

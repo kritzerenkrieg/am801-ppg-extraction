@@ -53,6 +53,7 @@ import numpy as np
 import pandas as pd
 
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import VarianceThreshold
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import (
     accuracy_score,
@@ -80,7 +81,7 @@ TEST_SIZE = 0.2
 # --- Classification target -------------------------------------------------
 # "three_class" -> train on all labels present (base / deceptive / truth).
 # "binary"      -> drop the baseline class and train only on lie vs. truth.
-CLASS_MODE = "binary"  # "three_class" or "binary"
+CLASS_MODE = "three_class"  # "three_class" or "binary"
 
 # Label values (case-insensitive) treated as the "baseline/base" class.
 # These rows are excluded entirely when CLASS_MODE == "binary".
@@ -95,10 +96,25 @@ EXCLUDE_COLS = {"window_start_ns", "window_end_ns", "label", "subject", "task", 
 
 # Model registry: display name -> factory producing a fresh, unfitted estimator.
 MODEL_FACTORIES: Dict[str, Callable[[], object]] = {
-    "SVM": lambda: SVC(kernel="rbf", probability=True, random_state=RANDOM_STATE),
-    "RandomForest": lambda: RandomForestClassifier(n_estimators=300, random_state=RANDOM_STATE),
+    "SVM": lambda: SVC(
+        kernel="rbf",
+        probability=True,
+        class_weight="balanced",
+        random_state=RANDOM_STATE,
+    ),
+    "RandomForest": lambda: RandomForestClassifier(
+        n_estimators=400,
+        max_depth=None,
+        min_samples_leaf=2,
+        class_weight="balanced_subsample",
+        random_state=RANDOM_STATE,
+    ),
     "MLP": lambda: MLPClassifier(
-        hidden_layer_sizes=(128, 64), max_iter=1000, random_state=RANDOM_STATE
+        hidden_layer_sizes=(128, 64),
+        max_iter=3000,
+        early_stopping=True,
+        alpha=1e-4,
+        random_state=RANDOM_STATE,
     ),
 }
 
@@ -274,10 +290,11 @@ def apply_class_mode(df: pd.DataFrame, class_mode: str) -> pd.DataFrame:
 
 
 def build_pipeline(estimator: object) -> Pipeline:
-    """Build an impute -> scale -> classify pipeline for one estimator."""
+    """Build an impute -> filter -> scale -> classify pipeline for one estimator."""
     return Pipeline(
         steps=[
             ("imputer", SimpleImputer(strategy="median")),
+            ("selector", VarianceThreshold(threshold=0.01)),
             ("scaler", StandardScaler()),
             ("clf", estimator),
         ]
