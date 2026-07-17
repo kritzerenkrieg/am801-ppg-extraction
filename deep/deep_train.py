@@ -98,7 +98,7 @@ OUTPUT_DIR: str = "."
 # "3class": keep all labels as-is (e.g. baseline / truth / deception).
 # "2class": drop windows whose label matches BASELINE_LABEL_KEYWORD (case
 #           insensitive substring match) and train truth vs. deception only.
-CLASS_MODE: str = "2class"  # "3class" or "2class"
+CLASS_MODE: str = "3class"  # "3class" or "2class"
 BASELINE_LABEL_KEYWORD: str = "base"
 
 logging.basicConfig(
