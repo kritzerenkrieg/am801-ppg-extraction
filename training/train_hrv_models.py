@@ -81,7 +81,7 @@ TEST_SIZE = 0.2
 # --- Classification target -------------------------------------------------
 # "three_class" -> train on all labels present (base / deceptive / truth).
 # "binary"      -> drop the baseline class and train only on lie vs. truth.
-CLASS_MODE = "three_class"  # "three_class" or "binary"
+CLASS_MODE = "binary"  # "three_class" or "binary"
 
 # Label values (case-insensitive) treated as the "baseline/base" class.
 # These rows are excluded entirely when CLASS_MODE == "binary".

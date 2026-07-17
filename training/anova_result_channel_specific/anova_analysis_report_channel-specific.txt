@@ -1,0 +1,668 @@
+================================================================================
+ANOVA ANALYSIS REPORT - HRV Features for Deception Detection
+Mode: Channel-Specific
+================================================================================
+
+METHODOLOGY
+--------------------------------------------------------------------------------
+Test: One-way ANOVA (F-test)
+Significance Level (α): 0.05
+Effect Size Measure: Eta-squared (η²)
+Effect Size Thresholds:
+  - Small: η² ≥ 0.01
+  - Medium: η² ≥ 0.06
+  - Large: η² ≥ 0.14
+
+INTERPRETATION
+--------------------------------------------------------------------------------
+ANOVA tests whether there are statistically significant differences between
+class means for each HRV feature. A significant result (p < α) indicates that
+at least one class differs from the others.
+
+Effect size (η²) indicates the proportion of variance explained by class
+membership, providing practical significance beyond statistical significance.
+
+SUMMARY
+--------------------------------------------------------------------------------
+Total features analyzed: 55
+Significant features (p < 0.05): 52 (94.5%)
+Highly significant (p < 0.001): 48 (87.3%)
+
+EFFECT SIZE DISTRIBUTION
+--------------------------------------------------------------------------------
+  Large: 0 features (0.0%)
+  Medium: 7 features (12.7%)
+  Small: 19 features (34.5%)
+  Negligible: 29 features (52.7%)
+
+DETAILED RESULTS (sorted by p-value)
+--------------------------------------------------------------------------------
+
+Feature: infrared_NN_Count
+  Classes: base, deceptive, truth
+  F-statistic: 701.2135
+  p-value: 2.27e-285 ***
+  η² (eta-squared): 0.1251 (medium)
+  Kruskal-Wallis H: 743.6894, p=3.24e-162
+  Descriptive statistics:
+    base: n=3311, mean=108.6638, std=19.0827
+    truth: n=2775, mean=102.0566, std=34.0291
+    deceptive: n=3729, mean=77.3438, std=49.1524
+
+Feature: ppg0_NN_Count
+  Classes: base, deceptive, truth
+  F-statistic: 679.0280
+  p-value: 6.35e-277 ***
+  η² (eta-squared): 0.1216 (medium)
+  Kruskal-Wallis H: 442.2500, p=9.26e-97
+  Descriptive statistics:
+    base: n=3311, mean=178.8674, std=15.8370
+    truth: n=2775, mean=166.0822, std=47.9493
+    deceptive: n=3729, mean=131.4358, std=79.3763
+
+Feature: ppg2_NN_Count
+  Classes: base, deceptive, truth
+  F-statistic: 673.1778
+  p-value: 1.09e-274 ***
+  η² (eta-squared): 0.1207 (medium)
+  Kruskal-Wallis H: 459.0707, p=2.06e-100
+  Descriptive statistics:
+    base: n=3311, mean=177.2452, std=18.4170
+    truth: n=2775, mean=164.0472, std=47.6681
+    deceptive: n=3729, mean=130.1073, std=78.5186
+
+Feature: red_NN_Count
+  Classes: base, deceptive, truth
+  F-statistic: 636.1630
+  p-value: 1.65e-260 ***
+  η² (eta-squared): 0.1148 (medium)
+  Kruskal-Wallis H: 623.4044, p=4.26e-136
+  Descriptive statistics:
+    base: n=3311, mean=117.1746, std=19.3380
+    truth: n=2775, mean=110.8836, std=36.1537
+    deceptive: n=3729, mean=85.3022, std=53.3170
+
+Feature: ppg1_NN_Count
+  Classes: base, deceptive, truth
+  F-statistic: 612.7163
+  p-value: 1.79e-251 ***
+  η² (eta-squared): 0.1110 (medium)
+  Kruskal-Wallis H: 311.4286, p=2.37e-68
+  Descriptive statistics:
+    base: n=3311, mean=176.7560, std=18.4746
+    truth: n=2775, mean=165.2548, std=47.8671
+    deceptive: n=3729, mean=131.6613, std=79.4206
+
+Feature: infrared_Mean_HR
+  Classes: base, deceptive, truth
+  F-statistic: 361.6119
+  p-value: 1.41e-151 ***
+  η² (eta-squared): 0.0769 (medium)
+  Kruskal-Wallis H: 942.2595, p=2.46e-205
+  Descriptive statistics:
+    base: n=3311, mean=55.0827, std=10.0564
+    truth: n=2601, mean=63.7786, std=13.4852
+    deceptive: n=2778, mean=58.9851, std=13.6269
+
+Feature: red_Mean_HR
+  Classes: base, deceptive, truth
+  F-statistic: 297.8789
+  p-value: 7.50e-126 ***
+  η² (eta-squared): 0.0642 (medium)
+  Kruskal-Wallis H: 1148.0892, p=4.96e-250
+  Descriptive statistics:
+    base: n=3311, mean=57.2749, std=9.5411
+    truth: n=2601, mean=63.6361, std=10.2079
+    deceptive: n=2780, mean=59.7764, std=10.2134
+
+Feature: infrared_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 269.0803
+  p-value: 4.16e-114 ***
+  η² (eta-squared): 0.0584 (small)
+  Kruskal-Wallis H: 113.8620, p=1.88e-25
+  Descriptive statistics:
+    base: n=3311, mean=1068.8517, std=277.8737
+    truth: n=2601, mean=1432.2648, std=811.7760
+    deceptive: n=2773, mean=1424.6812, std=911.6726
+
+Feature: infrared_SDNN
+  Classes: base, deceptive, truth
+  F-statistic: 254.1515
+  p-value: 5.40e-108 ***
+  η² (eta-squared): 0.0553 (small)
+  Kruskal-Wallis H: 116.8192, p=4.30e-26
+  Descriptive statistics:
+    base: n=3311, mean=875.1465, std=235.7302
+    truth: n=2601, mean=1165.0747, std=651.6449
+    deceptive: n=2776, mean=1167.3439, std=777.8622
+
+Feature: red_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 245.1509
+  p-value: 2.68e-104 ***
+  η² (eta-squared): 0.0534 (small)
+  Kruskal-Wallis H: 293.5459, p=1.81e-64
+  Descriptive statistics:
+    base: n=3311, mean=928.4157, std=239.2508
+    truth: n=2601, mean=1108.9421, std=382.9251
+    deceptive: n=2779, mean=1071.9785, std=383.3758
+
+Feature: red_SDNN
+  Classes: base, deceptive, truth
+  F-statistic: 229.1868
+  p-value: 1.01e-97 ***
+  η² (eta-squared): 0.0501 (small)
+  Kruskal-Wallis H: 289.9441, p=1.10e-63
+  Descriptive statistics:
+    base: n=3311, mean=757.6590, std=204.4751
+    truth: n=2601, mean=901.2690, std=312.6218
+    deceptive: n=2779, mean=873.7047, std=315.8057
+
+Feature: infrared_RMSSD
+  Classes: base, deceptive, truth
+  F-statistic: 220.2866
+  p-value: 4.77e-94 ***
+  η² (eta-squared): 0.0483 (small)
+  Kruskal-Wallis H: 128.6771, p=1.14e-28
+  Descriptive statistics:
+    base: n=3311, mean=1239.7065, std=370.9627
+    truth: n=2601, mean=1614.5345, std=876.8342
+    deceptive: n=2776, mean=1618.3953, std=1087.4915
+
+Feature: infrared_SD1
+  Classes: base, deceptive, truth
+  F-statistic: 210.6974
+  p-value: 4.43e-90 ***
+  η² (eta-squared): 0.0463 (small)
+  Kruskal-Wallis H: 127.2724, p=2.31e-28
+  Descriptive statistics:
+    base: n=3311, mean=881.0795, std=264.9237
+    truth: n=2601, mean=1147.8336, std=624.4328
+    deceptive: n=2773, mean=1146.8134, std=793.5701
+
+Feature: infrared_SDSD
+  Classes: base, deceptive, truth
+  F-statistic: 209.5343
+  p-value: 1.34e-89 ***
+  η² (eta-squared): 0.0460 (small)
+  Kruskal-Wallis H: 125.9924, p=4.38e-28
+  Descriptive statistics:
+    base: n=3311, mean=1246.0346, std=374.6587
+    truth: n=2601, mean=1623.2819, std=883.0813
+    deceptive: n=2776, mean=1620.0863, std=1122.9363
+
+Feature: ppg2_SD1_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 183.6957
+  p-value: 7.28e-79 ***
+  η² (eta-squared): 0.0406 (small)
+  Kruskal-Wallis H: 413.8658, p=1.35e-90
+  Descriptive statistics:
+    base: n=3311, mean=0.7959, std=0.0497
+    truth: n=2601, mean=0.7720, std=0.0466
+    deceptive: n=2781, mean=0.7811, std=0.0490
+
+Feature: red_RMSSD
+  Classes: base, deceptive, truth
+  F-statistic: 182.3028
+  p-value: 2.77e-78 ***
+  η² (eta-squared): 0.0403 (small)
+  Kruskal-Wallis H: 274.5798, p=2.38e-60
+  Descriptive statistics:
+    base: n=3311, mean=1062.8689, std=327.9367
+    truth: n=2601, mean=1248.3193, std=444.8510
+    deceptive: n=2779, mean=1220.2936, std=457.8447
+
+Feature: red_SD1
+  Classes: base, deceptive, truth
+  F-statistic: 180.8329
+  p-value: 1.14e-77 ***
+  η² (eta-squared): 0.0400 (small)
+  Kruskal-Wallis H: 273.6556, p=3.77e-60
+  Descriptive statistics:
+    base: n=3311, mean=755.1163, std=234.1707
+    truth: n=2601, mean=887.0198, std=317.0195
+    deceptive: n=2779, mean=867.3680, std=328.3541
+
+Feature: red_SDSD
+  Classes: base, deceptive, truth
+  F-statistic: 180.8329
+  p-value: 1.14e-77 ***
+  η² (eta-squared): 0.0400 (small)
+  Kruskal-Wallis H: 273.6556, p=3.77e-60
+  Descriptive statistics:
+    base: n=3311, mean=1067.8958, std=331.1673
+    truth: n=2601, mean=1254.4354, std=448.3332
+    deceptive: n=2779, mean=1226.6437, std=464.3628
+
+Feature: ppg1_SD1_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 153.5698
+  p-value: 2.86e-66 ***
+  η² (eta-squared): 0.0341 (small)
+  Kruskal-Wallis H: 302.9036, p=1.68e-66
+  Descriptive statistics:
+    base: n=3311, mean=0.7949, std=0.0474
+    truth: n=2601, mean=0.7765, std=0.0488
+    deceptive: n=2781, mean=0.7762, std=0.0481
+
+Feature: ppg0_SD1_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 134.7726
+  p-value: 2.28e-58 ***
+  η² (eta-squared): 0.0301 (small)
+  Kruskal-Wallis H: 356.1211, p=4.67e-78
+  Descriptive statistics:
+    base: n=3311, mean=0.7955, std=0.0493
+    truth: n=2601, mean=0.7754, std=0.0477
+    deceptive: n=2781, mean=0.7812, std=0.0497
+
+Feature: red_Median_NN
+  Classes: base, deceptive, truth
+  F-statistic: 98.4369
+  p-value: 5.33e-43 ***
+  η² (eta-squared): 0.0222 (small)
+  Kruskal-Wallis H: 428.9934, p=7.00e-94
+  Descriptive statistics:
+    base: n=3311, mean=1398.7464, std=222.1488
+    truth: n=2601, mean=1287.1353, std=211.8844
+    deceptive: n=2780, mean=1395.8785, std=501.5966
+
+Feature: ppg0_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 51.1842
+  p-value: 7.96e-23 ***
+  η² (eta-squared): 0.0116 (small)
+  Kruskal-Wallis H: 186.5506, p=3.10e-41
+  Descriptive statistics:
+    base: n=3311, mean=576.2227, std=148.4638
+    truth: n=2601, mean=610.6606, std=181.6503
+    deceptive: n=2781, mean=567.3575, std=170.1754
+
+Feature: ppg1_RMSSD
+  Classes: base, deceptive, truth
+  F-statistic: 49.9256
+  p-value: 2.76e-22 ***
+  η² (eta-squared): 0.0114 (small)
+  Kruskal-Wallis H: 123.3968, p=1.60e-27
+  Descriptive statistics:
+    base: n=3311, mean=669.7676, std=177.5442
+    truth: n=2601, mean=675.7528, std=195.6211
+    deceptive: n=2781, mean=632.2709, std=153.8268
+
+Feature: ppg1_SDSD
+  Classes: base, deceptive, truth
+  F-statistic: 49.6938
+  p-value: 3.47e-22 ***
+  η² (eta-squared): 0.0113 (small)
+  Kruskal-Wallis H: 122.7654, p=2.20e-27
+  Descriptive statistics:
+    base: n=3311, mean=671.7340, std=178.2352
+    truth: n=2601, mean=677.7951, std=196.4799
+    deceptive: n=2781, mean=634.2077, std=154.4357
+
+Feature: ppg1_SD1
+  Classes: base, deceptive, truth
+  F-statistic: 49.6938
+  p-value: 3.47e-22 ***
+  η² (eta-squared): 0.0113 (small)
+  Kruskal-Wallis H: 122.7654, p=2.20e-27
+  Descriptive statistics:
+    base: n=3311, mean=474.9876, std=126.0313
+    truth: n=2601, mean=479.2735, std=138.9323
+    deceptive: n=2781, mean=448.4526, std=109.2025
+
+Feature: ppg0_SDNN
+  Classes: base, deceptive, truth
+  F-statistic: 48.2725
+  p-value: 1.42e-21 ***
+  η² (eta-squared): 0.0110 (small)
+  Kruskal-Wallis H: 170.6119, p=8.96e-38
+  Descriptive statistics:
+    base: n=3311, mean=467.0707, std=117.8501
+    truth: n=2601, mean=492.3717, std=146.8192
+    deceptive: n=2781, mean=458.1159, std=134.9100
+
+Feature: ppg0_RMSSD
+  Classes: base, deceptive, truth
+  F-statistic: 40.8347
+  p-value: 2.23e-18 ***
+  η² (eta-squared): 0.0093 (negligible)
+  Kruskal-Wallis H: 129.3164, p=8.30e-29
+  Descriptive statistics:
+    base: n=3311, mean=642.9838, std=155.1003
+    truth: n=2601, mean=666.2698, std=203.0744
+    deceptive: n=2781, mean=622.6547, std=175.1810
+
+Feature: ppg0_SDSD
+  Classes: base, deceptive, truth
+  F-statistic: 40.6215
+  p-value: 2.76e-18 ***
+  η² (eta-squared): 0.0093 (negligible)
+  Kruskal-Wallis H: 128.6839, p=1.14e-28
+  Descriptive statistics:
+    base: n=3311, mean=644.8343, std=155.6985
+    truth: n=2601, mean=668.3143, std=204.0334
+    deceptive: n=2781, mean=624.6177, std=176.0788
+
+Feature: ppg0_SD1
+  Classes: base, deceptive, truth
+  F-statistic: 40.6215
+  p-value: 2.76e-18 ***
+  η² (eta-squared): 0.0093 (negligible)
+  Kruskal-Wallis H: 128.6839, p=1.14e-28
+  Descriptive statistics:
+    base: n=3311, mean=455.9667, std=110.0954
+    truth: n=2601, mean=472.5696, std=144.2734
+    deceptive: n=2781, mean=441.6714, std=124.5065
+
+Feature: ppg1_SDNN
+  Classes: base, deceptive, truth
+  F-statistic: 39.8779
+  p-value: 5.76e-18 ***
+  η² (eta-squared): 0.0091 (negligible)
+  Kruskal-Wallis H: 110.7446, p=8.96e-25
+  Descriptive statistics:
+    base: n=3311, mean=486.5191, std=132.6678
+    truth: n=2601, mean=498.6665, std=142.9576
+    deceptive: n=2781, mean=467.1308, std=117.0387
+
+Feature: ppg1_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 37.9826
+  p-value: 3.77e-17 ***
+  η² (eta-squared): 0.0087 (negligible)
+  Kruskal-Wallis H: 109.1903, p=1.95e-24
+  Descriptive statistics:
+    base: n=3311, mean=600.2418, std=166.0255
+    truth: n=2601, mean=618.1777, std=177.6627
+    deceptive: n=2781, mean=579.2788, std=147.4356
+
+Feature: ppg0_Mean_HR
+  Classes: base, deceptive, truth
+  F-statistic: 31.0509
+  p-value: 3.65e-14 ***
+  η² (eta-squared): 0.0071 (negligible)
+  Kruskal-Wallis H: 49.9919, p=1.39e-11
+  Descriptive statistics:
+    base: n=3311, mean=74.1933, std=2.9679
+    truth: n=2601, mean=74.2562, std=3.6855
+    deceptive: n=2781, mean=73.5883, std=3.9002
+
+Feature: infrared_Median_NN
+  Classes: base, deceptive, truth
+  F-statistic: 25.5134
+  p-value: 8.96e-12 ***
+  η² (eta-squared): 0.0058 (negligible)
+  Kruskal-Wallis H: 450.6453, p=1.39e-98
+  Descriptive statistics:
+    base: n=3311, mean=1488.5609, std=228.5292
+    truth: n=2601, mean=1355.6813, std=235.1502
+    deceptive: n=2778, mean=1517.3373, std=1531.1861
+
+Feature: red_Heart_Rate
+  Classes: base, deceptive, truth
+  F-statistic: 22.1189
+  p-value: 2.62e-10 ***
+  η² (eta-squared): 0.0051 (negligible)
+  Kruskal-Wallis H: 53.2647, p=2.71e-12
+  Descriptive statistics:
+    base: n=3311, mean=54.7125, std=37.6611
+    truth: n=2601, mean=61.7274, std=43.1866
+    deceptive: n=2780, mean=58.2900, std=40.7973
+
+Feature: red_SD1_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 21.6160
+  p-value: 4.32e-10 ***
+  η² (eta-squared): 0.0050 (negligible)
+  Kruskal-Wallis H: 30.4211, p=2.48e-07
+  Descriptive statistics:
+    base: n=3311, mean=0.8078, std=0.0541
+    truth: n=2601, mean=0.7992, std=0.0516
+    deceptive: n=2779, mean=0.8068, std=0.0532
+
+Feature: infrared_Mean_NN
+  Classes: base, deceptive, truth
+  F-statistic: 21.0528
+  p-value: 7.57e-10 ***
+  η² (eta-squared): 0.0048 (negligible)
+  Kruskal-Wallis H: 134.6598, p=5.74e-30
+  Descriptive statistics:
+    base: n=3311, mean=1586.0832, std=344.8314
+    truth: n=2601, mean=1567.2214, std=359.2939
+    deceptive: n=2778, mean=1717.3837, std=1584.9938
+
+Feature: infrared_Heart_Rate
+  Classes: base, deceptive, truth
+  F-statistic: 20.7052
+  p-value: 1.07e-09 ***
+  η² (eta-squared): 0.0047 (negligible)
+  Kruskal-Wallis H: 21.5445, p=2.10e-05
+  Descriptive statistics:
+    base: n=3311, mean=53.4431, std=37.8650
+    truth: n=2601, mean=60.0582, std=47.0042
+    deceptive: n=2778, mean=54.0459, std=42.4022
+
+Feature: red_Mean_NN
+  Classes: base, deceptive, truth
+  F-statistic: 16.0119
+  p-value: 1.15e-07 ***
+  η² (eta-squared): 0.0037 (negligible)
+  Kruskal-Wallis H: 101.7723, p=7.95e-23
+  Descriptive statistics:
+    base: n=3311, mean=1468.4705, std=315.8103
+    truth: n=2601, mean=1440.3285, std=318.4698
+    deceptive: n=2780, mean=1501.9076, std=535.2736
+
+Feature: ppg2_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 15.8120
+  p-value: 1.40e-07 ***
+  η² (eta-squared): 0.0036 (negligible)
+  Kruskal-Wallis H: 160.7375, p=1.25e-35
+  Descriptive statistics:
+    base: n=3311, mean=589.5060, std=248.8216
+    truth: n=2601, mean=628.8268, std=351.6271
+    deceptive: n=2781, mean=597.1253, std=225.3615
+
+Feature: infrared_SD1_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 14.3017
+  p-value: 6.30e-07 ***
+  η² (eta-squared): 0.0033 (negligible)
+  Kruskal-Wallis H: 7.6017, p=2.24e-02
+  Descriptive statistics:
+    base: n=3311, mean=0.8196, std=0.0493
+    truth: n=2601, mean=0.8113, std=0.0685
+    deceptive: n=2773, mean=0.8129, std=0.0761
+
+Feature: ppg2_SDNN
+  Classes: base, deceptive, truth
+  F-statistic: 13.8273
+  p-value: 1.01e-06 ***
+  η² (eta-squared): 0.0032 (negligible)
+  Kruskal-Wallis H: 133.1148, p=1.24e-29
+  Descriptive statistics:
+    base: n=3311, mean=477.5245, std=196.8057
+    truth: n=2601, mean=506.1399, std=274.8145
+    deceptive: n=2781, mean=482.1432, std=177.9239
+
+Feature: ppg0_Heart_Rate
+  Classes: base, deceptive, truth
+  F-statistic: 13.1112
+  p-value: 2.06e-06 ***
+  η² (eta-squared): 0.0030 (negligible)
+  Kruskal-Wallis H: 13.1479, p=1.40e-03
+  Descriptive statistics:
+    base: n=3311, mean=73.0334, std=21.5163
+    truth: n=2601, mean=72.0742, std=21.0341
+    deceptive: n=2781, mean=70.2573, std=21.0757
+
+Feature: ppg1_Mean_NN
+  Classes: base, deceptive, truth
+  F-statistic: 9.0259
+  p-value: 1.21e-04 ***
+  η² (eta-squared): 0.0021 (negligible)
+  Kruskal-Wallis H: 14.0972, p=8.69e-04
+  Descriptive statistics:
+    base: n=3311, mean=942.2906, std=90.5186
+    truth: n=2601, mean=938.9377, std=97.8295
+    deceptive: n=2781, mean=932.2858, std=89.2026
+
+Feature: ppg2_RMSSD
+  Classes: base, deceptive, truth
+  F-statistic: 7.8137
+  p-value: 4.07e-04 ***
+  η² (eta-squared): 0.0018 (negligible)
+  Kruskal-Wallis H: 54.8746, p=1.21e-12
+  Descriptive statistics:
+    base: n=3311, mean=655.8820, std=251.1445
+    truth: n=2601, mean=680.6441, std=330.4935
+    deceptive: n=2781, mean=655.3276, std=225.8164
+
+Feature: ppg2_SDSD
+  Classes: base, deceptive, truth
+  F-statistic: 7.7989
+  p-value: 4.13e-04 ***
+  η² (eta-squared): 0.0018 (negligible)
+  Kruskal-Wallis H: 54.7225, p=1.31e-12
+  Descriptive statistics:
+    base: n=3311, mean=657.8179, std=252.3000
+    truth: n=2601, mean=682.7675, std=333.4286
+    deceptive: n=2781, mean=657.3689, std=226.7891
+
+Feature: ppg2_SD1
+  Classes: base, deceptive, truth
+  F-statistic: 7.7989
+  p-value: 4.13e-04 ***
+  η² (eta-squared): 0.0018 (negligible)
+  Kruskal-Wallis H: 54.7225, p=1.31e-12
+  Descriptive statistics:
+    base: n=3311, mean=465.1475, std=178.4030
+    truth: n=2601, mean=482.7895, std=235.7696
+    deceptive: n=2781, mean=464.8300, std=160.3641
+
+Feature: ppg1_Median_NN
+  Classes: base, deceptive, truth
+  F-statistic: 7.7618
+  p-value: 4.29e-04 ***
+  η² (eta-squared): 0.0018 (negligible)
+  Kruskal-Wallis H: 198.7228, p=7.05e-44
+  Descriptive statistics:
+    base: n=3311, mean=724.3992, std=42.3746
+    truth: n=2601, mean=723.6492, std=36.4689
+    deceptive: n=2781, mean=728.5418, std=66.3442
+
+Feature: ppg1_Mean_HR
+  Classes: base, deceptive, truth
+  F-statistic: 7.4283
+  p-value: 5.98e-04 ***
+  η² (eta-squared): 0.0017 (negligible)
+  Kruskal-Wallis H: 17.6168, p=1.49e-04
+  Descriptive statistics:
+    base: n=3311, mean=73.6855, std=4.0821
+    truth: n=2601, mean=74.1095, std=4.2764
+    deceptive: n=2781, mean=73.8911, std=4.2792
+
+Feature: ppg0_Mean_NN
+  Classes: base, deceptive, truth
+  F-statistic: 6.5010
+  p-value: 1.51e-03 **
+  η² (eta-squared): 0.0015 (negligible)
+  Kruskal-Wallis H: 9.8082, p=7.42e-03
+  Descriptive statistics:
+    base: n=3311, mean=928.0535, std=68.8046
+    truth: n=2601, mean=933.9896, std=86.7817
+    deceptive: n=2781, mean=934.9495, std=89.4811
+
+Feature: ppg2_Mean_HR
+  Classes: base, deceptive, truth
+  F-statistic: 5.7925
+  p-value: 3.06e-03 **
+  η² (eta-squared): 0.0013 (negligible)
+  Kruskal-Wallis H: 28.6512, p=6.00e-07
+  Descriptive statistics:
+    base: n=3311, mean=73.6409, std=3.9046
+    truth: n=2601, mean=73.7269, std=4.2291
+    deceptive: n=2781, mean=73.3675, std=4.1795
+
+Feature: ppg0_Median_NN
+  Classes: base, deceptive, truth
+  F-statistic: 3.7149
+  p-value: 2.44e-02 *
+  η² (eta-squared): 0.0009 (negligible)
+  Kruskal-Wallis H: 189.4876, p=7.13e-42
+  Descriptive statistics:
+    base: n=3311, mean=716.2313, std=7.8405
+    truth: n=2601, mean=716.4677, std=11.4986
+    deceptive: n=2781, mean=718.3001, std=53.9353
+
+Feature: ppg2_Mean_NN
+  Classes: base, deceptive, truth
+  F-statistic: 3.5959
+  p-value: 2.75e-02 *
+  η² (eta-squared): 0.0008 (negligible)
+  Kruskal-Wallis H: 4.4063, p=1.10e-01
+  Descriptive statistics:
+    base: n=3311, mean=940.0414, std=98.7278
+    truth: n=2601, mean=947.6357, std=130.5775
+    deceptive: n=2781, mean=943.7955, std=95.4137
+
+Feature: ppg2_Heart_Rate
+  Classes: base, deceptive, truth
+  F-statistic: 2.3983
+  p-value: 9.09e-02 ns
+  η² (eta-squared): 0.0006 (negligible)
+  Kruskal-Wallis H: 13.9343, p=9.42e-04
+  Descriptive statistics:
+    base: n=3311, mean=70.8517, std=21.8070
+    truth: n=2601, mean=71.7739, std=21.6247
+    deceptive: n=2781, mean=70.5325, std=21.2505
+
+Feature: ppg2_Median_NN
+  Classes: base, deceptive, truth
+  F-statistic: 1.8911
+  p-value: 1.51e-01 ns
+  η² (eta-squared): 0.0004 (negligible)
+  Kruskal-Wallis H: 227.4052, p=4.16e-50
+  Descriptive statistics:
+    base: n=3311, mean=725.2451, std=39.0575
+    truth: n=2601, mean=727.8240, std=45.9187
+    deceptive: n=2781, mean=726.6290, std=65.6977
+
+Feature: ppg1_Heart_Rate
+  Classes: base, deceptive, truth
+  F-statistic: 0.5799
+  p-value: 5.60e-01 ns
+  η² (eta-squared): 0.0001 (negligible)
+  Kruskal-Wallis H: 10.0695, p=6.51e-03
+  Descriptive statistics:
+    base: n=3311, mean=71.3046, std=21.2900
+    truth: n=2601, mean=71.8298, std=20.8192
+    deceptive: n=2781, mean=71.2987, std=20.5951
+
+================================================================================
+CONCLUSIONS
+================================================================================
+
+TOP 10 MOST SIGNIFICANT FEATURES:
+1. infrared_NN_Count (p=2.27e-285, η²=0.1251)
+2. ppg0_NN_Count (p=6.35e-277, η²=0.1216)
+3. ppg2_NN_Count (p=1.09e-274, η²=0.1207)
+4. red_NN_Count (p=1.65e-260, η²=0.1148)
+5. ppg1_NN_Count (p=1.79e-251, η²=0.1110)
+6. infrared_Mean_HR (p=1.41e-151, η²=0.0769)
+7. red_Mean_HR (p=7.50e-126, η²=0.0642)
+8. infrared_SD2 (p=4.16e-114, η²=0.0584)
+9. infrared_SDNN (p=5.40e-108, η²=0.0553)
+10. red_SD2 (p=2.68e-104, η²=0.0534)
+
+RECOMMENDATIONS:
+--------------------------------------------------------------------------------
+
+Features with both statistical significance (p < 0.05) and medium-to-large
+effect sizes (η² ≥ 0.06) are recommended for classification tasks.
+
+================================================================================

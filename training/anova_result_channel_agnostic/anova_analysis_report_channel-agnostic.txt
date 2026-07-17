@@ -1,0 +1,190 @@
+================================================================================
+ANOVA ANALYSIS REPORT - HRV Features for Deception Detection
+Mode: Channel-Agnostic
+================================================================================
+
+METHODOLOGY
+--------------------------------------------------------------------------------
+Test: One-way ANOVA (F-test)
+Significance Level (α): 0.05
+Effect Size Measure: Eta-squared (η²)
+Effect Size Thresholds:
+  - Small: η² ≥ 0.01
+  - Medium: η² ≥ 0.06
+  - Large: η² ≥ 0.14
+
+CHANNEL AGGREGATION METHOD
+--------------------------------------------------------------------------------
+Features from different sensor channels (red, infrared, ppg0, ppg1, ppg2)
+were combined by calculating the mean across all channels for each feature.
+This creates channel-independent feature representations.
+
+INTERPRETATION
+--------------------------------------------------------------------------------
+ANOVA tests whether there are statistically significant differences between
+class means for each HRV feature. A significant result (p < α) indicates that
+at least one class differs from the others.
+
+Effect size (η²) indicates the proportion of variance explained by class
+membership, providing practical significance beyond statistical significance.
+
+SUMMARY
+--------------------------------------------------------------------------------
+Total features analyzed: 11
+Significant features (p < 0.05): 11 (100.0%)
+Highly significant (p < 0.001): 11 (100.0%)
+
+EFFECT SIZE DISTRIBUTION
+--------------------------------------------------------------------------------
+  Large: 0 features (0.0%)
+  Medium: 1 features (9.1%)
+  Small: 8 features (72.7%)
+  Negligible: 2 features (18.2%)
+
+DETAILED RESULTS (sorted by p-value)
+--------------------------------------------------------------------------------
+
+Feature: NN_Count
+  Classes: base, deceptive, truth
+  F-statistic: 700.7300
+  p-value: 3.47e-285 ***
+  η² (eta-squared): 0.1250 (medium)
+  Kruskal-Wallis H: 532.2015, p=2.72e-116
+  Descriptive statistics:
+    base: n=3311, mean=151.7414, std=13.5354
+    truth: n=2775, mean=141.6649, std=40.6995
+    deceptive: n=3729, mean=111.1701, std=67.1805
+
+Feature: SD2
+  Classes: base, deceptive, truth
+  F-statistic: 267.3811
+  p-value: 2.04e-113 ***
+  η² (eta-squared): 0.0580 (small)
+  Kruskal-Wallis H: 365.7380, p=3.81e-80
+  Descriptive statistics:
+    base: n=3311, mean=376.7252, std=67.6290
+    truth: n=2601, mean=440.2806, std=121.8820
+    deceptive: n=2781, mean=424.2808, std=138.9236
+
+Feature: SDNN
+  Classes: base, deceptive, truth
+  F-statistic: 248.5424
+  p-value: 1.08e-105 ***
+  η² (eta-squared): 0.0541 (small)
+  Kruskal-Wallis H: 326.5423, p=1.24e-71
+  Descriptive statistics:
+    base: n=3311, mean=612.7840, std=111.5911
+    truth: n=2601, mean=712.7043, std=196.5600
+    deceptive: n=2781, mean=689.5504, std=230.8606
+
+Feature: SD1_SD2
+  Classes: base, deceptive, truth
+  F-statistic: 236.4419
+  p-value: 1.03e-100 ***
+  η² (eta-squared): 0.0516 (small)
+  Kruskal-Wallis H: 523.9805, p=1.66e-114
+  Descriptive statistics:
+    base: n=3311, mean=0.8027, std=0.0285
+    truth: n=2601, mean=0.7869, std=0.0271
+    deceptive: n=2781, mean=0.7917, std=0.0313
+
+Feature: Mean_HR
+  Classes: base, deceptive, truth
+  F-statistic: 219.6953
+  p-value: 8.34e-94 ***
+  η² (eta-squared): 0.0481 (small)
+  Kruskal-Wallis H: 1026.0682, p=1.56e-223
+  Descriptive statistics:
+    base: n=3311, mean=66.7755, std=5.0770
+    truth: n=2601, mean=69.9015, std=5.9796
+    deceptive: n=2781, mean=67.9142, std=6.1555
+
+Feature: RMSSD
+  Classes: base, deceptive, truth
+  F-statistic: 196.5124
+  p-value: 3.38e-84 ***
+  η² (eta-squared): 0.0433 (small)
+  Kruskal-Wallis H: 224.8281, p=1.51e-49
+  Descriptive statistics:
+    base: n=3311, mean=854.2418, std=163.5944
+    truth: n=2601, mean=977.1041, std=267.6709
+    deceptive: n=2781, mean=949.6154, std=318.8978
+
+Feature: SD1
+  Classes: base, deceptive, truth
+  F-statistic: 192.3146
+  p-value: 1.88e-82 ***
+  η² (eta-squared): 0.0424 (small)
+  Kruskal-Wallis H: 225.1903, p=1.26e-49
+  Descriptive statistics:
+    base: n=3311, mean=606.4595, std=116.6025
+    truth: n=2601, mean=693.8972, std=190.6160
+    deceptive: n=2781, mean=673.6178, std=230.1986
+
+Feature: SDSD
+  Classes: base, deceptive, truth
+  F-statistic: 192.0477
+  p-value: 2.43e-82 ***
+  η² (eta-squared): 0.0423 (small)
+  Kruskal-Wallis H: 225.1837, p=1.26e-49
+  Descriptive statistics:
+    base: n=3311, mean=857.6633, std=164.9008
+    truth: n=2601, mean=981.3188, std=269.5718
+    deceptive: n=2781, mean=952.4366, std=325.6024
+
+Feature: Median_NN
+  Classes: base, deceptive, truth
+  F-statistic: 48.0862
+  p-value: 1.70e-21 ***
+  η² (eta-squared): 0.0109 (small)
+  Kruskal-Wallis H: 547.8904, p=1.06e-119
+  Descriptive statistics:
+    base: n=3311, mean=1010.6366, std=92.4036
+    truth: n=2601, mean=962.1515, std=90.2546
+    deceptive: n=2781, mean=1017.9201, std=379.2792
+
+Feature: Heart_Rate
+  Classes: base, deceptive, truth
+  F-statistic: 25.9737
+  p-value: 5.67e-12 ***
+  η² (eta-squared): 0.0059 (negligible)
+  Kruskal-Wallis H: 56.2353, p=6.15e-13
+  Descriptive statistics:
+    base: n=3311, mean=64.6690, std=15.9124
+    truth: n=2601, mean=67.4927, std=16.6441
+    deceptive: n=2781, mean=64.8786, std=16.1153
+
+Feature: Mean_NN
+  Classes: base, deceptive, truth
+  F-statistic: 19.4322
+  p-value: 3.80e-09 ***
+  η² (eta-squared): 0.0045 (negligible)
+  Kruskal-Wallis H: 46.9433, p=6.40e-11
+  Descriptive statistics:
+    base: n=3311, mean=1172.9878, std=149.6560
+    truth: n=2601, mean=1165.6226, std=156.4636
+    deceptive: n=2781, mean=1206.5816, std=403.9601
+
+================================================================================
+CONCLUSIONS
+================================================================================
+
+TOP 10 MOST SIGNIFICANT FEATURES:
+1. NN_Count (p=3.47e-285, η²=0.1250)
+2. SD2 (p=2.04e-113, η²=0.0580)
+3. SDNN (p=1.08e-105, η²=0.0541)
+4. SD1_SD2 (p=1.03e-100, η²=0.0516)
+5. Mean_HR (p=8.34e-94, η²=0.0481)
+6. RMSSD (p=3.38e-84, η²=0.0433)
+7. SD1 (p=1.88e-82, η²=0.0424)
+8. SDSD (p=2.43e-82, η²=0.0423)
+9. Median_NN (p=1.70e-21, η²=0.0109)
+10. Heart_Rate (p=5.67e-12, η²=0.0059)
+
+RECOMMENDATIONS:
+--------------------------------------------------------------------------------
+
+Features with both statistical significance (p < 0.05) and medium-to-large
+effect sizes (η² ≥ 0.06) are recommended for classification tasks.
+
+================================================================================
